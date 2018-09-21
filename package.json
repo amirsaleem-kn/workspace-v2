@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "your personal workspace to manage day to day activities",
   "main": "index.js",
+  "engines": {
+    "node": "8.x"
+  },
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Amir Saleem",
   "license": "ISC",
