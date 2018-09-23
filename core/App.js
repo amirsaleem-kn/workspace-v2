@@ -5,6 +5,11 @@
 
 const express = require('express');
 const rateLimit = require('express-rate-limit');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+
+const helperFunctions = require('../lib/etc/helper-functions');
+const { printLog } = helperFunctions;
 
 const app = express();
 
@@ -21,5 +26,22 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
+
+// specify the hosts, methods and headers allowed by this server
+app.use(function(req, res, next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", '*,PUT');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, allow-access");
+    next();
+});
+
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 10000 }));
+app.use(compression());
+
+app.use(function(req, res, next){
+    printLog(`\n[${req.method}]: ${req.originalUrl}\n`);
+    next();
+})
 
 module.exports = app;
