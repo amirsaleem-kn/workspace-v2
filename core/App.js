@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 
 const helperFunctions = require('../lib/etc/helper-functions');
-const { printLog } = helperFunctions;
+const { printLog, httpRequestLogger } = helperFunctions;
 
 const app = express();
 
@@ -39,9 +39,6 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 10000 }));
 app.use(compression());
 
-app.use(function(req, res, next){
-    printLog(`\n[${req.method}]: ${req.originalUrl}\n`);
-    next();
-})
+app.use(httpRequestLogger);
 
 module.exports = app;

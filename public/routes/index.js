@@ -36,8 +36,8 @@ function routeHandler() {
             return;
         }
 
-        console.log(req.get('Basic'));
-        console.log(Buffer.from(req.get('Basic'), 'base64').toString());
+        //console.log(req.get('Basic'));
+        //console.log(Buffer.from(req.get('Basic'), 'base64').toString());
 
         
         return res.json({
