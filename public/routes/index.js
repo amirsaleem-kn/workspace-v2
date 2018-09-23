@@ -5,13 +5,8 @@
  */
 
 const app = require('../../core/App');
-
-function calcResponseTime(startTimestamp) {
-    if(!startTimestamp) {
-        return null;
-    }
-    return Date.now() - startTimestamp
-}
+const helperFunctions = require('../../lib/etc/helper-functions');
+const { calcResponseTime, encodeBase64, decodeBase64 } = helperFunctions;
 
 function routeHandler() {
 
@@ -37,9 +32,6 @@ function routeHandler() {
             return;
         }
 
-        //console.log(req.get('Basic'));
-        //console.log(Buffer.from(req.get('Basic'), 'base64').toString());
-        
         return res.json({
             status: "success"
         });
@@ -47,10 +39,8 @@ function routeHandler() {
     });
 
     app.get('/', (req, res) => {
-        const base64Credentials = new Buffer('admin:secret').toString('base64');
         res.send({
-            'Greeting': "Welcome to your workspace",
-            'base64Creds': base64Credentials
+            'Greeting': "Welcome to your workspace"
         });
     });
 
