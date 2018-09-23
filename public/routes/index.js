@@ -1,6 +1,7 @@
 /**
  * @author Amir Saleem
- * @description 
+ * @description
+ * @api sudo -s /usr/share/postman/Postman /usr/bin/postman 
  */
 
 const app = require('../../core/App');
