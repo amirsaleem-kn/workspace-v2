@@ -9,7 +9,8 @@
   "scripts": {
     "test": "npm run test",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "dockerBuild": "sudo docker build -t workspace ."
   },
   "author": "Amir Saleem",
   "license": "ISC",
